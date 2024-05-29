@@ -1,0 +1,38 @@
+footer {
+  font-size: 16px;
+  position: relative;
+  background-color: #254a91;
+  color: #ededed;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 0;
+  a {
+    color: white;
+  }
+  p {
+    margin: 0 5px;
+  }
+}
+
+@media (max-width: #{$pcrwd-breakpoint + 'px'}) {
+  footer {
+    font-size: vw(16px);
+    padding: vw(20px) 0;
+    p {
+      margin: 0 vw(5px);
+    }
+  }
+}
+
+@media(max-width: #{$mblrwd-breakpoint + 'px'}) {
+  footer {
+    flex-wrap: wrap;
+    font-size: vwm(30px);
+    padding: vwm(20px) 0;
+    p {
+      margin: 0;
+    }
+  }
+}

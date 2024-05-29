@@ -1,0 +1,116 @@
+<div class="calc-container">
+  <div class="title-block">
+    <h4>投資計劃建議</h4>
+    <h5>{{plan_name}} | 期初 {{ shared.initial_amount / 10000 | number: '1.0-1' }} 萬 | 每月 {{ shared.monthly_amount / 10000 | number: '1.0-1' }} 萬 | 年期 {{ shared.period }} 年</h5>
+  </div>
+</div>
+<div class="tab-group">
+  <ul>
+    <li class="active" (click)="chart_block = 'pie';" [ngClass]="{'active': chart_block === 'pie'}">股債比建議</li>
+    <li (click)="chart_block = 'area';" [ngClass]="{'active': chart_block === 'area'}">資產展望&投資配置</li>
+  </ul>
+</div>
+<div class="tab-content-block">
+  <div class="tab-content tab1" *ngIf="chart_block === 'pie'">
+    <div class="charts">
+      <div class="pie">
+        <highcharts-chart
+          [Highcharts]="Highcharts"
+
+          [constructorType]="chartConstructor_pie"
+          [options]="chartOptions_pie"
+          [callbackFunction]="chartCallback_pie"
+
+          [(update)]="updateFlag_pie"
+          [oneToOne]="oneToOneFlag_pie"
+
+          style="width: 100vw; height: 100vw; display: block; max-width: 768px; max-height: 768px;"
+          class="pie-chart"
+        ></highcharts-chart>
+        <div class="chart-wrapper">
+          <p class="lato">{{shared.current_year}} 年</p>
+          <div class="sbrate">
+            <div class="stock">
+              <p>股票型</p>
+              <p class="digit"><span class="huge lato" countUp [endVal]="allocation[0] * 100">0</span>%</p>
+            </div>
+            <div class="bond">
+              <p>債券型</p>
+              <p class="digit"><span class="huge lato" countUp [endVal]="(1 - allocation[0]) * 100">0</span>%</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <ul class="pie-legends">
+        <li><i class="legend1"></i><span>美國股票</span></li>
+        <li><i class="legend2"></i><span>歐洲股票</span></li>
+        <li><i class="legend3"></i><span>日本股票</span></li>
+        <li><i class="legend4"></i><span>新興股票</span></li>
+        <li><i class="legend5"></i><span>短期債券</span></li>
+        <li><i class="legend6"></i><span>中期債券</span></li>
+        <li><i class="legend7"></i><span>長期債券</span></li>
+      </ul>
+    </div>
+  </div>
+    <div class="tab-content tab2" *ngIf="chart_block === 'area';">
+    <div class="meta-group container">
+      <p class="meta-title">
+        <span>模擬時間：{{ assume_year_area }} 年</span>
+        <span>目標金額：{{ target_amount / 10000 | number: '1.0-0' }} 萬</span>
+      </p>
+      <ul class="meta-details">
+        <li>
+          <p>資產展望</p>
+          <ul class="legends">
+            <li class="common">一般表現 ${{common_target / 10000 | number : '1.0-0'}} 萬 <span>{{ common_target_distance > 0 ? '+' : '' }}{{common_target_distance / 10000 | number: '1.0-0'}}萬({{ common_target_distance > 0 ? '+' : '' }}{{common_target_distance_rate | number: '1.0-0'}}%)</span></li>
+            <li class="better">較佳表現 ${{better_target / 10000 | number : '1.0-0'}} 萬 <span>{{ better_target_distance > 0 ? '+' : '' }}{{better_target_distance / 10000 | number: '1.0-0'}}萬({{ better_target_distance > 0 ? '+' : '' }}{{better_target_distance_rate | number: '1.0-0'}}%)</span></li>
+            <li class="poor">較差表現 ${{poor_target / 10000 | number : '1.0-0'}} 萬 <span>{{ poor_target_distance > 0 ? '+' : '' }}{{poor_target_distance / 10000 | number: '1.0-0'}}萬({{ poor_target_distance > 0 ? '+' : '' }}{{poor_target_distance_rate | number: '1.0-0'}}%)</span></li>
+            <li class="accu">累積投入本金 ${{accu_amount / 10000 | number: '1.0-0' }} 萬</li>
+          </ul>
+        </li>
+        <li>
+          <p>投資配置<span>(<span class="stock">股票型</span>/<span class="bond">債券型</span>)</span></p>
+          <ul class="allocations">
+            <li class="common">
+              <div class="allo-stock" [ngStyle]="{'width': common_target_equity_ratio + '%'}"
+                >{{ common_target_equity_ratio >= 50 ? common_target_equity_ratio + '%' : '' }}</div>
+              <div class="allo-bond" [ngStyle]="{'width': ( 100 - common_target_equity_ratio) + '%'}"
+              >{{ common_target_equity_ratio < 50 ? ( 100 - common_target_equity_ratio ) + '%' : '' }}</div>
+            </li>
+            <li class="better">
+              <div class="allo-stock" [ngStyle]="{'width': better_target_equity_ratio + '%'}"
+                >{{ better_target_equity_ratio >= 50 ? better_target_equity_ratio + '%' : '' }}</div>
+              <div class="allo-bond" [ngStyle]="{'width': ( 100 - better_target_equity_ratio ) + '%' }"
+                >{{ better_target_equity_ratio < 50 ? ( 100 - better_target_equity_ratio ) + '%' : '' }}</div>
+            </li>
+            <li class="poor">
+              <div class="allo-stock" [ngStyle]="{'width': poor_target_equity_ratio + '%' }"
+              >{{ poor_target_equity_ratio >= 50 ? poor_target_equity_ratio + '%' : '' }}</div>
+              <div class="allo-bond" [ngStyle]="{'width': ( 100 - poor_target_equity_ratio ) + '%' }"
+              >{{ poor_target_equity_ratio < 50 ? ( 100 - poor_target_equity_ratio ) + '%' : '' }}</div>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    <div class="charts">
+      <highcharts-chart
+        [Highcharts]="Highcharts"
+
+        [constructorType]="chartConstructor_area"
+        [options]="chartOptions_area"
+        [callbackFunction]="chartCallback_area"
+
+        [(update)]="updateFlag_area"
+        [oneToOne]="oneToOneFlag_area"
+
+        style="width: 100%; height: 50vh; display: block;"
+      ></highcharts-chart>
+    </div>
+  </div>
+  <div class="btn-block inline">
+    <button class="btn normal" routerLink="/trailcalc" routerLinkActive="router-link-active" >重選目標</button>
+    <button class="btn" (click)="openModal()">調整計畫</button>
+  </div>
+</div>
+<app-common-desc></app-common-desc>

@@ -1,0 +1,175 @@
+<article>
+  <div class="container">
+    <div class="title-block">
+      <h1>常見問題</h1>
+    </div>
+    <div class="desc-block">
+      <ul class="black-items">
+        <li [ngClass]="{'active': tabid === 'panel1'}" (click)="tabid = 'panel1';">新手使用</li>
+        <li [ngClass]="{'active': tabid === 'panel2'}" (click)="tabid = 'panel2';">投資組合</li>
+        <li [ngClass]="{'active': tabid === 'panel3'}" (click)="tabid = 'panel3';">動態再平衡<br>機制</li>
+      </ul>
+      <section class="tab-panel">
+        <div class="panel" [ngClass]="{'active': tabid === 'panel1'}">
+          <ul class="items">
+            <li>
+              <div class="leading lato">Q1</div>
+              <div class="desc">
+                <p>什麼是永豐智能理財?</p>
+              </div>
+            </li>
+            <li>
+              <div class="leading lato">A1</div>
+              <div class="desc">
+                <p>永豐智能理財係依據您所設定之目標、再參酌您設定之投入資金的金額與方式，以及您想完成目標的期限，進而量身打造專屬於您的投資組合。</p>
+                <p>除了一開始的投資建議，隨著市場變化，我們將時時檢視您的投資，在必要時，也會即時建議你調整投資組合的方式，確保穩健的朝投資目標前進。</p>
+              </div>
+            </li>
+            <li>
+              <div class="leading lato">Q2</div>
+              <div class="desc">
+                <p>我不想單筆投入太大金額，能否定時定額投資？</p>
+              </div>
+            </li>
+            <li>
+              <div class="leading lato">A2</div>
+              <div class="desc">
+                <p>永豐智能理財依據您的目標金額和投資年限等，提供您多樣化的投入方式，您可以選擇最適合自己的方式。</p>
+              </div>
+            </li>
+            <li>
+              <div class="leading lato">Q3</div>
+              <div class="desc">
+                <p>投資標的為何?</p>
+              </div>
+            </li>
+            <li>
+              <div class="leading lato">A3</div>
+              <div class="desc">
+                <p>ETF(Exchange Traded Funds)是指數股票型基金，與一般共同基金不同，ETF是在交易所買賣。永豐智能理財以ETF為投資標的原因有三：</p>
+                <ol class="decimal">
+                  <li>ETF被動追蹤指數表現，目標明確且不受人為干擾。</li>
+                  <li>ETF的費用率遠低於共同基金。</li>
+                  <li>持股分散且透明。</li>
+                </ol>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="panel" [ngClass]="{'active': tabid === 'panel2'}">
+          <ul class="items">
+            <li>
+              <div class="leading lato">Q1</div>
+              <div class="desc">
+                <p>什麼是資產配置?</p>
+              </div>
+            </li>
+            <li>
+              <div class="leading lato">A1</div>
+              <div class="desc">
+                <p>資產配置是指因應投資者個別的情況和投資目標，把投資分配在不同種類的資產上如股票、債券，以更穩健的方式達成投資目標。</p>
+                <p>永豐智能理財提供的投資組合由股票和債券兩大類資產所組成。股票具備高報酬和高波動特性；債券則是低報酬和低波動特性。</p>
+              </div>
+            </li>
+            <li>
+              <div class="leading lato">Q2</div>
+              <div class="desc">
+                <p>資產配置有什麼好處?</p>
+              </div>
+            </li>
+            <li>
+              <div class="leading lato">A2</div>
+              <div class="desc">
+                <p>從下表可以看到股債混合的投資組合較單押股票有更好的抗跌性；比起單押債券有更好的投資報酬率。</p>
+              </div>
+            </li>
+          </ul>
+          <table class="formatted-table">
+            <thead>
+              <tr>
+                <td></td>
+                <td>
+                  <p>70% 股票<br>+ 30% 債券</p>
+                </td>
+                <td>
+                  <p>100% 股票</p>
+                </td>
+                <td>
+                  <p>100% 債券</p>
+                </td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <p>投資期間最佳</p>
+                  <p>年度報酬率</p>
+                </td>
+                <td>
+                  <p>+21.98%</p>
+                </td>
+                <td>
+                  <p>+32.31%</p>
+                </td>
+                <td>
+                  <p>+7.92%</p>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <p>投資期間最差</p>
+                  <p>年度報酬率</p>
+                </td>
+                <td>
+                  <p>-23.71%</p>
+                </td>
+                <td>
+                  <p>-36.81%</p>
+                </td>
+                <td>
+                  <p>-2.10%</p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="sub-by-table">*股票以美國股票SPY代表；債券以美國綜合債券BND代表</p>
+          <p class="sub-by-table">**回測期間為2008~2018</p>
+          <br>
+          <ul class="items">
+            <li>
+              <div class="leading lato">Q3</div>
+              <div class="desc">
+                <p>我可以變更投資組合各標的的投資金額嗎？</p>
+              </div>
+            </li>
+            <li>
+              <div class="leading lato">A3</div>
+              <div class="desc">
+                <p>不可以，永豐智能理財提供的投資組合係依據您的理財目標、性別、年齡、收入等，以演算法與大數據運算而產生，為穩健達成您的理財目標，並不提供修改功能。</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="panel" [ngClass]="{'active': tabid === 'panel3'}">
+          <ul class="items">
+            <li>
+              <div class="leading lato">Q1</div>
+              <div class="desc">
+                <p>為什麼需要調整投資組合？</p>
+              </div>
+            </li>
+            <li>
+              <div class="leading lato">A1</div>
+              <div class="desc">
+                <p>隨著市場變化或是投資金額增加，或距離目標期間更短，我們都將提供您最適合的智能理財配置，但您既有的投資組合未必等同於此一智能理財配置。故須調整投資組合，確保您的投資穩健朝目標前進。</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </section>
+    </div>
+    <div class="btn-block">
+      <button class="btn" routerLink="/trailcalc">開始試算</button>
+    </div>
+  </div>
+</article>

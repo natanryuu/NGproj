@@ -1,0 +1,8 @@
+<article class="calc-section" [ngClass]="current_route">
+  <app-plan-init-input *ngIf="page_progress === 'init-input'"></app-plan-init-input>
+  <app-loading *ngIf="page_progress === 'loading'"></app-loading>
+  <app-plan-adjusts *ngIf="page_progress === 'plan-adjusts'"></app-plan-adjusts>
+  <app-plan-adjusts-retire *ngIf="page_progress === 'plan-adjusts-retire'"></app-plan-adjusts-retire>
+  <app-plan-adjusts-custom *ngIf="page_progress === 'plan-adjusts-custom'"></app-plan-adjusts-custom>
+  <app-plan-results *ngIf="page_progress === 'plan-results'"></app-plan-results>
+</article>

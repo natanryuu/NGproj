@@ -1,0 +1,43 @@
+<div class="wrapper-container" [ngClass]="{'open-menu': toggleOpen}">
+  <header>
+    <div class="container">
+      <button class="toggle-menu" [ngClass]="{'open-menu': toggleOpen}" (click)="toggleOpen = !toggleOpen;"></button>
+      <div class="logo" [routerLink]="['/']">
+        <img src="assets/images/sinopac-logo-min.svg" alt=" ">
+      </div>
+      <p class="red" [routerLink]="['/']">智能理財</p>
+    </div>
+    <nav [ngClass]="{'open-menu': toggleOpen}">
+      <ul>
+        <li>
+          <a (click)="toggleOpen = false;" routerLink="/" href="#">首頁</a>
+        </li>
+        <li>
+          <a href="#" (click)="$event.preventDefault();">關於</a>
+          <ul>
+            <li><a (click)="toggleOpen = false;" routerLink="/about/target" href="#">智能理財</a></li>
+            <li><a (click)="toggleOpen = false;" routerLink="/about/mode" href="#">運作方式</a></li>
+          </ul>
+        <li>
+          <a href="#" (click)="$event.preventDefault();">投資方法</a>
+          <ul>
+            <li><a (click)="toggleOpen = false;" routerLink="/method/algorithm" href="#">演算法</a></li>
+            <li><a (click)="toggleOpen = false;" routerLink="/method/balance" href="#">動態再平衡</a></li>
+            <li><a (click)="toggleOpen = false;" routerLink="/method/filter" href="#">標的篩選</a></li>
+          </ul>
+        </li>
+        <li><a (click)="toggleOpen = false;" routerLink="/faq" href="#">常見問題</a></li>
+        <li><a (click)="toggleOpen = false;" routerLink="/trailcalc" href="#">立即試算</a></li>
+      </ul>
+    </nav>
+  </header>
+  <main>
+
+    <router-outlet></router-outlet>
+
+  </main>
+  <footer>
+    <p>© 版權所有。永豐銀行<span class="hidden-min">，</span><br class="hidden-max">24 小時客服專線：02-2505-9999 / 0203-08989</p>
+  </footer>
+</div>
+<app-modal></app-modal>

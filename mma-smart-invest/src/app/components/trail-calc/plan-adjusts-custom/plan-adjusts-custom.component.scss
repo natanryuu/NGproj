@@ -1,0 +1,25 @@
+@import '_variables';
+
+.form-block {
+  .grid {
+    .row {
+      span.label {
+        width: 32%;
+      }
+      .form-select {
+        width: 100%;
+      }
+    }
+  }
+}
+@media (max-width: #{$mblrwd-breakpoint + 'px'}) {
+  .form-block {
+    .grid {
+      .row {
+        span.label {
+          width: 25vw;
+        }
+      }
+    }
+  }
+}

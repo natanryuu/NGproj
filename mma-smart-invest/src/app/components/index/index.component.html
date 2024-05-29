@@ -1,0 +1,41 @@
+<div class="index-bg index1 container" #index1 id="index1">
+  <div class="desc-block">
+    <div class="desc">您設定目標，財富就交給永豐智能理財為您全力衝刺！</div>
+    <div class="btn-block">
+      <button class="btn" routerLink="/trailcalc">開始試算</button>
+    </div>
+  </div>
+</div>
+<div class="index-bg index2 container" #index2 id="index2">
+  <div class="desc-block">
+    <div class="title">專注為你</div>
+    <div class="desc" (click)="openModal('indexSec2')">與眾不同的你值得更用心的對待<br>配合你的步調，我們一起打造專屬於你的投資計劃<br>一步一步地完成你人生中的每一件大事</div>
+    <div class="btn-block">
+      <button class="btn" routerLink="/trailcalc">開始試算</button>
+    </div>
+  </div>
+</div>
+<div class="index-bg index3 container" #index3 id="index3">
+  <div class="desc-block">
+    <div class="title">動態再平衡</div>
+    <div class="desc" (click)="openModal('indexSec3')">我們時時檢視你的資產，且在需要時進行調整配置<br>確保你託付的每一塊錢都被妥善的運用<br>配合目標達成狀況以更穩健的方式前進</div>
+    <div class="btn-block">
+      <button class="btn" routerLink="/trailcalc">開始試算</button>
+    </div>
+  </div>
+</div>
+<div class="index-bg index4 container" #index4 id="index4">
+  <div class="desc-block">
+    <div class="title">穩健達標</div>
+    <div class="desc" (click)="openModal('indexSec4')">達成你的目標是我們最關心的大事<br>時時監控並配合現有的狀態適時調整配置<br>以最平穩的步伐朝目標前進</div>
+    <div class="btn-block">
+      <button class="btn" routerLink="/trailcalc">開始試算</button>
+    </div>
+  </div>
+</div>
+<ul class="nav-dots">
+  <li [ngx-scroll-to]="sections[0]" [ngClass]="{'active': current_section === 0}" (click)="current_section = 0;"></li>
+  <li [ngx-scroll-to]="sections[1]" [ngClass]="{'active': current_section === 1}" (click)="current_section = 1;"></li>
+  <li [ngx-scroll-to]="sections[2]" [ngClass]="{'active': current_section === 2}" (click)="current_section = 2;"></li>
+  <li [ngx-scroll-to]="sections[3]" [ngClass]="{'active': current_section === 3}" (click)="current_section = 3;"></li>
+</ul>

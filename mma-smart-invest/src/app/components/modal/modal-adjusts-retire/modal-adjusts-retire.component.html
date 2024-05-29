@@ -1,0 +1,40 @@
+<div class="form-block modal">
+  <div class="grid">
+    <div class="grid-row">
+      <div class="row">
+        <span class="label">預定退休年齡</span>
+        <input type="number" [ngModel]="retire_age" (ngModelChange)="setPeriod($event);">
+        <span>歲</span>
+      </div>
+      <div class="range">
+        <mat-slider min="20" max="99" step="1" [ngModel]="retire_age" (ngModelChange)="setPeriod($event);"></mat-slider>
+      </div>
+    </div>
+    <div class="grid-row">
+      <div class="row">
+        <span class="label">退休金目標 $<br><sub>新臺幣</sub></span>
+        <input type="number" [ngModel]="target_amount_retire" (ngModelChange)="setTargetAmount($event);">
+        <span>萬</span>
+      </div>
+      <div class="range">
+        <mat-slider min="5" max="2000" step="1" [ngModel]="target_amount_retire" (ngModelChange)="setTargetAmount($event);"></mat-slider>
+      </div>
+    </div>
+    <div class="grid-row">
+      <div class="row row-row">
+        <span class="label">投入金額</span>
+        <div class="form-select">
+          <p class="value">期初 ${{initial_table[default_ini_rsp_index]['ini'] | number}}&nbsp;&nbsp;每月 ${{initial_table[default_ini_rsp_index]['RSP'] | number}}</p>
+          <select [ngModel]="default_ini_rsp_index" (ngModelChange)="setIniMonthly($event);">
+            <option *ngFor="let item of initial_table; index as i" [value]="i">期初 ${{item['ini'] | number}}&nbsp;&nbsp;每月 ${{item['RSP'] | number}}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="btn-block inline in-modal">
+  <button class="btn normal return" (click)="resetData();closeModal();">返回</button>
+  <button class="btn" (click)="comeGetSome();closeModal();">查看試算結果</button>
+</div>

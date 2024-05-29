@@ -1,0 +1,49 @@
+<div class="calc-container">
+  <div class="title-block">
+    <h4>投資計劃建議</h4>
+    <h5>{{plan_name}} | {{this.shared.gender[init_input.gender]}} | {{init_input.age}} 歲 | 月收入 {{init_input.income / 10000}} 萬</h5>
+  </div>
+  <div class="form-block">
+    <div class="grid">
+      <div class="grid-row target-desc red">
+        <span>目標金額 $</span>
+        <span class="huge lato">{{target_amount / 10000 | number: '1.0-0'}}</span>
+        <span>萬元</span>
+      </div>
+      <div class="grid-row">
+        <div class="row">
+          <span class="label">期初 $</span>
+          <input type="number" [ngModel]="input_initial" (ngModelChange)="setInitialAmount($event);">
+          <span>萬</span>
+        </div>
+        <div class="range">
+          <mat-slider min="5" max="300" step="1" [ngModel]="input_initial" (ngModelChange)="setInitialAmount($event);"></mat-slider>
+        </div>
+      </div>
+      <div class="grid-row">
+        <div class="row">
+          <span class="label">每月 $<br><sub>新臺幣</sub></span>
+          <input type="number" [ngModel]="input_monthly" (ngModelChange)="setMonthlyAmount($event);">
+          <span>元</span>
+        </div>
+        <div class="range">
+          <mat-slider min="5000" max="500000" step="1000" value="value" [ngModel]="input_monthly" (ngModelChange)="setMonthlyAmount($event);"></mat-slider>
+        </div>
+      </div>
+      <div class="grid-row">
+        <div class="row">
+          <span class="label">年期</span>
+          <input type="number" [ngModel]="input_period" (ngModelChange)="setPeriod($event)">
+          <span>年</span>
+        </div>
+        <div class="range">
+          <mat-slider min="3" max="30" step="1" value="value" [ngModel]="input_period" (ngModelChange)="setPeriod($event)"></mat-slider>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="btn-block">
+    <button class="btn" (click)="comeGetSome();">查看試算結果</button>
+  </div>
+</div>
+<app-common-desc></app-common-desc>

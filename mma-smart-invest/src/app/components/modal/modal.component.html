@@ -1,0 +1,12 @@
+<div class="modal-backdrop" *ngIf="open_modal" (click)="closeModal();"></div>
+<div class="modal-container" [ngClass]="operate_class" *ngIf="open_modal">
+  <div class="modal-close" (click)="closeModal();" *ngIf="show_close_btn"></div>
+  <div class="modal-block">
+    <app-modal-index-sec2 *ngIf="componentName === 'indexSec2'"></app-modal-index-sec2>
+    <app-modal-index-sec3 *ngIf="componentName === 'indexSec3'"></app-modal-index-sec3>
+    <app-modal-index-sec4 *ngIf="componentName === 'indexSec4'"></app-modal-index-sec4>
+    <app-modal-adjusts *ngIf="componentName === 'modalAdjusts'"></app-modal-adjusts>
+    <app-modal-adjusts-retire *ngIf="componentName === 'modalAdjustsRetire'"></app-modal-adjusts-retire>
+    <app-modal-adjusts-custom *ngIf="componentName === 'modalAdjustsCustom'"></app-modal-adjusts-custom>
+  </div>
+</div>

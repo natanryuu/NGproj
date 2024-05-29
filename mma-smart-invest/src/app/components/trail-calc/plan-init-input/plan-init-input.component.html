@@ -1,0 +1,46 @@
+<div class="calc-container">
+  <div class="title-block">
+    <h4>輸入試算</h4>
+  </div>
+  <div class="form-block">
+    <table>
+      <tbody>
+        <tr>
+          <th>我是</th>
+          <td>
+            <div class="radio-block">
+              <label class="form-radio">
+                <input type="radio" name="gender" [value]="1" [(ngModel)]="init_input.gender">
+                <span>男生</span>
+              </label>
+              <label class="form-radio">
+                <input type="radio" name="gender" [value]="2" [(ngModel)]="init_input.gender">
+                <span>女生</span>
+              </label>
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <th>我今年 / 歲</th>
+          <td>
+            <input type="number" name="age" min="20" max="99" [(ngModel)]="init_input.age">
+          </td>
+        </tr>
+        <tr>
+          <th>每月收入</th>
+          <td>
+            <div class="form-select">
+              <span class="value">{{init_input.income | number}}</span>
+              <select [(ngModel)]="init_input.income">
+                <option *ngFor="let item of income_lists" [value]="item">{{item | number}}</option>
+              </select>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="btn-block">
+    <button class="btn" (click)="setDefaultValueAndGoNext();">開始我的投資計劃</button>
+  </div>
+</div>
