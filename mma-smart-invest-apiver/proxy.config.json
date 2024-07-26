@@ -1,0 +1,7 @@
+{
+  "/ws/ai/aiquery/**": {
+    "target": "http://10.11.36.36/",
+    "secure": false,
+    "logLevel": "debug"
+  }
+}

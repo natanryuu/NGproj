@@ -1,0 +1,33 @@
+<div class="index-bg">
+  <div class="container">
+    <div class="desc-block">
+      <span>選擇您的投資目標</span>
+    </div>
+    <div class="pic">
+      <div class="createjs-container"><iframe src="assets/createjs/star01/index.html"></iframe></div>
+    </div>
+    <article class="trailcalc">
+      <button class="btn curve" (click)="setPlan($event, 'retire-plan', shared.plans['retire-plan']);"
+        *ngIf="shared.init_input.age >= 20 && shared.init_input.age <= shared.death_age[shared.init_input.gender] - 3">
+        <span>退休規劃</span>
+        <div class="bk"></div>
+      </button>
+      <button class="btn curve" (click)="setPlan($event, 'trip-funds', shared.plans['trip-funds']);">
+        <span>旅遊基金</span>
+        <div class="bk"></div>
+      </button>
+      <button class="btn curve" (click)="setPlan($event, 'childs-edu', shared.plans['childs-edu']);">
+        <span>子女教育</span>
+        <div class="bk"></div>
+      </button>
+      <button class="btn curve" (click)="setPlan($event, 'buying-house', shared.plans['buying-house']);">
+        <span>購屋頭期</span>
+        <div class="bk"></div>
+      </button>
+      <button class="btn curve" (click)="setPlan($event, 'custom-plan');">
+        <span>自訂計畫</span>
+        <div class="bk"></div>
+      </button>
+    </article>
+  </div>
+</div>

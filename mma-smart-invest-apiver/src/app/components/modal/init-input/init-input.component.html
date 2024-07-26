@@ -1,0 +1,37 @@
+<form [formGroup]="ngForm" (ngSubmit)="onSubmit(form)" #form="ngForm">
+  <div class="init-input">
+    <div class="form-block modal">
+      <div class="title-block">
+        <h3>輸入試算</h3>
+      </div>
+      <div class="row">
+        <span>我是</span>
+        <div class="form-select inline-style">
+          <select formControlName="formGender">
+            <option [value]="'M'">{{shared.gender['M']}}</option>
+            <option [value]="'F'">{{shared.gender['F']}}</option>
+          </select>
+          <span class="value">{{shared.gender[ngForm.controls['formGender'].value]}}</span>
+        </div>
+        <span>，今年</span>
+        <input class="inline-style" type="number" pattern="[0-9]*" inputmode="numeric" name="age" [min]="shared.input_age_min_limit" [max]="shared.input_age_max_limit" formControlName="formAge" (change)="fixAge();">
+        <span>歲</span>
+      </div>
+      <div class="row">
+        <span>月收入<span class="fwb">新臺幣</span></span>
+        <div class="form-select inline-style">
+          <select formControlName="formIncome">
+            <option *ngFor="let item of income_lists" [value]="item">{{item | number}}</option>
+          </select>
+          <span class="value">{{ngForm.controls['formIncome'].value | number}}</span>
+        </div>
+        <span>元</span>
+      </div>
+      <p *ngIf="err_msg !== ''" class="red text-center error-msg">＊ {{err_msg}}</p>
+    </div>
+  </div>
+
+  <div class="btn-block inline center">
+    <button class="btn" type="submit">開始我的投資計劃</button>
+  </div>
+</form>

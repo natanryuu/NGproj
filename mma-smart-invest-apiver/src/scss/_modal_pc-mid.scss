@@ -1,0 +1,88 @@
+@media (max-width: #{$pcrwd-breakpoint + 'px'}) {
+  .icon {
+    &.icon-error {
+      width: vw(50px);
+      height: vw(50px);
+      margin-right: vw(15px);
+    }
+    &.icon-loading {
+      width: vw(50px);
+      height: vw(50px);
+    }
+    &.icon-ques {
+      width: vw(30px);
+      height: vw(30px);
+    }
+  }
+
+  .modal-container {
+    padding: vw(10px);
+    &.loading {
+      border-radius: vw(20px);
+    }
+    &.error {
+      .text-block {
+        .icon {
+          margin-right: vw(15px);
+        }
+      }
+    }
+  }
+  .modal {
+    .title {
+      font-size: vw(48px);
+    }
+    input[name='age'] {
+      padding-right: vw(10px);
+      margin-right: vw(5px);
+      line-height: inherit;
+    }
+    .reminds {
+      font-size: vw(15px);
+    }
+    &.value-adjusts {
+      width: vw(500px);
+      .expects {
+        margin-top: vw(40px);
+        margin-bottom: vw(40px);
+        .icon {
+          margin-left: vw(10px);
+        }
+      }
+    }
+    &.set-plan-name {
+      min-width: vw(450px);
+      padding-top: vw(50px);
+      padding-bottom: vw(50px);
+    }
+    &.contact-me {
+      width: vw(460px);
+    }
+    .message-block {
+      .text-block {
+        font-size: vw(30px);
+      }
+    }
+  }
+
+  .modal-block {
+    height: calc(90vh - #{vw(100px)});
+    max-width: vw(700px);
+    padding: vw(40px);
+    padding-top: vw(60px);
+    box-shadow: 0 vw(3px) vw(3px) vw(3px) rgba(0,0,0,.3);
+    border-radius: vw(20px);
+  }
+
+  .modal-close {
+    width: vw(50px);
+    height: vw(50px);
+
+    right: vw(10px);
+    top: vw(10px);
+
+    &::after, &::before {
+      height: vw(2px);
+    }
+  }
+}

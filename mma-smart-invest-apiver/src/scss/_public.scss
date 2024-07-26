@@ -1,0 +1,72 @@
+/* visible, hidden rwd */
+.hide {
+  display: none !important;
+}
+.show {
+  display: block !important;
+}
+@-ms-viewport {
+  width: device-width;
+}
+@media (max-width: #{$pcrwd-breakpoint + 'px'}) {
+  .hidden-middle {
+    display: none !important;
+  }
+}
+@media (max-width: #{$mblrwd-breakpoint + 'px'}) {
+  .hidden-min {
+    display: none !important;
+  }
+}
+@media (min-width: #{($mblrwd-breakpoint + 1) +'px'}) {
+  .hidden-max {
+    display: none !important;
+  }
+}
+.visible-print {
+  display: none !important;
+}
+@media print {
+  .visible-print {
+    display: block !important;
+  }
+  table.visible-print {
+    display: table;
+  }
+  tr.visible-print {
+    display: table-row !important;
+  }
+  th.visible-print,
+  td.visible-print {
+    display: table-cell !important;
+  }
+}
+.visible-print-block {
+  display: none !important;
+}
+@media print {
+  .visible-print-block {
+    display: block !important;
+  }
+}
+.visible-print-inline {
+  display: none !important;
+}
+@media print {
+  .visible-print-inline {
+    display: inline !important;
+  }
+}
+.visible-print-inline-block {
+  display: none !important;
+}
+@media print {
+  .visible-print-inline-block {
+    display: inline-block !important;
+  }
+}
+@media print {
+  .hidden-print {
+    display: none !important;
+  }
+}

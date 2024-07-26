@@ -1,0 +1,339 @@
+@media (max-width: #{$pcrwd-breakpoint + 'px'}) {
+
+  main {
+    padding-top: vw(122px);
+  }
+
+  .switch-buttons {
+    .btn {
+      margin: 0 vw(15px);
+    }
+  }
+
+  .title-block {
+    padding-top: vw(30px);
+    margin-bottom: vw(30px);
+    padding-bottom: vw(15px);
+    h1 {
+      font-size: vw(70px);
+    }
+    h2 {
+      font-size: vw(60px);
+    }
+    h3 {
+      font-size: vw(40px);
+    }
+    h4 {
+      font-size: vw(40px);
+      letter-spacing: vw(5px);
+    }
+    h5 {
+      font-size: vw(20px);
+      margin: vw(10px) 0;
+      p, span {
+        border-right-width: vw(2px);
+        padding: 0 vw(10px);
+      }
+    }
+    h6 {
+      font-size: vw(30px);
+    }
+  }
+
+  .steps {
+    li {
+      padding: vw(30px) 0;
+    }
+    .arrow {
+      width: vw(40px);
+      height: vw(22px);
+    }
+  }
+
+  .items {
+    > li {
+      margin-bottom: vw(30px);
+      .leading {
+        font-size: vw(100px);
+        margin-right: vw(20px);
+      }
+      .desc {
+        .sub-title {
+          font-size: vw(40px);
+        }
+      }
+    }
+  }
+
+  .formatted-table {
+    th, td {
+      padding: vw(10px);
+    }
+    tbody {
+      td {
+        font-size: vw(24px);
+      }
+    }
+  }
+
+  .sub-by-table {
+    font-size: vw(24px);
+  }
+
+  .trailcalc {
+    figure {
+      margin-bottom: vw(15px);
+    }
+  }
+
+  .calc-section {
+    min-height: calc(100vh - #{vw(100px)} - #{vw(130px)});
+    .title-block {
+      padding-left: vw(50px);
+      padding-right: vw(30px);
+      margin-bottom: vw(15px);
+      h5 {
+        letter-spacing: vw(2px);
+        p, span {
+          padding: 0 vw(15px);
+        }
+        u {
+          font-size: vw(30px);
+          margin-top: vw(10px);
+        }
+      }
+      .result-title {
+        h6 {
+          margin-top: vw(15px);
+        }
+      }
+    }
+  }
+
+  .calc-container {
+    padding-bottom: vw(30px);
+  }
+
+  .loading-block {
+    .text-block {
+      margin-bottom: vw(50px);
+    }
+    span {
+      font-size: vw(40px);
+    }
+    .wheels {
+      width: vw(300px);
+      height: vw(300px);
+      border-width: vw(8px);
+
+      &::after {
+        width: vw(250px);
+        height: vw(250px);
+        border-width: vw(8px);
+        margin-top: calc(#{vw(-258px)} / 2);
+        margin-left: calc(#{vw(-258px)} / 2);
+      }
+      &::before {
+        width: vw(200px);
+        height: vw(200px);
+        border-width: vw(8px);
+        margin-top: calc(#{vw(-208px)} / 2);
+        margin-left: calc(#{vw(-208px)} / 2);
+      }
+    }
+  }
+  .common-desc-block {
+    padding-top: vw(40px);
+    padding-bottom: vw(40px);
+  }
+  .tab-group {
+    ul {
+      // padding: 0 vw(15px) 0 vw(75px);
+      li {
+        font-size: vw(18px);
+        padding: 0 vw(20px);
+        // border-top-left-radius: vw(10px);
+        // border-top-right-radius: vw(10px);
+        + li {
+          // margin-left: vw(15px);
+        }
+      }
+    }
+    &.fixed {
+      .isapp & {
+        top: vw(0px);
+      }
+      ul {
+        top: vw(98px);
+        margin-left: -1px;
+        li {
+          // border-radius: vw(15px);
+        }
+      }
+    }
+  }
+  .tab-content-block {
+    border-radius: vw(10px);
+    margin: 0 vw(20px);
+    .tab1 {
+      padding-top: vw(50px);
+    }
+    > .btn-block {
+      margin-top: vw(10px);
+      padding-top: vw(50px);
+      padding-bottom: vw(50px);
+      border-radius: vw(10px);
+    }
+    .tab-content {
+      border-radius: vw(10px);
+      + .tab-content {
+        margin-top: vw(10px);
+      }
+    }
+    .tab-title {
+      font-size: vw(20px);
+    }
+  }
+  .meta-group {
+    padding-top: vw(20px);
+    padding-bottom: vw(20px);
+
+    .show-irr{
+      flex-shrink: 0;
+    font-size: 1.8vw;
+    line-height: 2;
+
+    }
+    .meta-title {
+      font-size: vw(30px);
+    }
+    .meta-details {
+      font-size: vw(24px);
+    }
+    .legends {
+      li {
+        &::before {
+          width: vw(20px);
+          height: vw(20px);
+          margin-right: vw(10px);
+        }
+      }
+    }
+    .allocations {
+      li {
+        height: vw(35px);
+        padding-bottom: vw(6px);
+        padding-top: vw(6px);
+        + li {
+          margin-top: vw(2px);
+        }
+      }
+      .allo-stock {
+        border-top-left-radius: vw(5px);
+        border-bottom-left-radius: vw(5px);
+        margin-right: vw(3px);
+      }
+      .allo-bond {
+        border-top-right-radius: vw(5px);
+        border-bottom-right-radius: vw(5px);
+      }
+    }
+  }
+  .back-history {
+    .grid {
+      .row {
+        span.label {
+          padding-right: vw(20px);
+          padding-left: vw(10px);
+        }
+
+        &.start-year,&.history-lists{
+          font-size: 2vw;
+
+        }
+      }
+    }
+  }
+  .pie {
+    .chart-wrapper {
+      > p {
+        font-size: vw(36px);
+        margin-bottom: vw(20px);
+      }
+      .sbrate {
+        margin-bottom: vw(20px);
+        div {
+          padding: 0 vw(20px);
+        }
+        p {
+          font-size: vw(18px);
+        }
+        .huge {
+          font-size: vw(52px);
+        }
+      }
+    }
+    .btn-block {
+      bottom: vw(75px);
+    }
+  }
+  .legend-table {
+    table {
+      th, td {
+        padding: vw(10px) vw(15px);
+      }
+    }
+    .allocate {
+      .pct {
+        padding-right: vw(5px);
+      }
+    }
+  }
+  .area-legend {
+    .title {
+      font-size: vw(20px);
+      span {
+        font-size: vw(15px);
+      }
+    }
+  }
+  .captcha-area {
+    .captcha {
+      margin-left: vw(20px);
+    }
+    .captcha-img {
+      img {
+        width: vw(155px);
+        height: vw(52px);
+      }
+    }
+  }
+
+  .has-tooltip {
+    .icon-ques {
+      &.show {
+        &::before {
+          border-width: 0 vw(15px) vw(20px) vw(15px);
+        }
+      }
+    }
+    .tooltip {
+      font-size: vw(14px);
+      padding: vw(10px);
+      top: calc(100% - #{vw(20px)});
+      left: vw(-10px);
+      right: vw(-10px);
+      .formula {
+        margin-top: vw(15px);
+      }
+      button {
+        margin-top: vw(10px);
+        padding: vw(10px);
+      }
+    }
+  }
+  .flip-clock {
+    margin: 0 vw(32px);
+  }
+}
+

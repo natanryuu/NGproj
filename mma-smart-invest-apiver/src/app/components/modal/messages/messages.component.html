@@ -1,0 +1,13 @@
+<div class="modal">
+  <div class="message-block">
+    <div class="wrapper">
+      <div class="text-block">
+        <i class="icon icon-error" *ngIf="modalsvc.msg_type === 'error'"></i>
+        <p [innerHTML]="modalsvc.loading_text"></p>
+      </div>
+      <div class="btn-block inline in-modal center">
+        <button class="btn" (click)="closeModal();$event.preventDefault();">關閉</button>
+      </div>
+    </div>
+  </div>
+</div>

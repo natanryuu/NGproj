@@ -1,0 +1,182 @@
+@import 'src/scss/_variables';
+
+.container {
+  position: relative;
+  padding: 0;
+}
+
+.index-bg {
+  position: relative;
+  min-height: calc(100vh - 98px - 88px);
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  color: white;
+  line-height: 1.5;
+}
+
+[name="age"] {
+  width: vwtop(80px);
+  padding-right: vwtop(10px);
+  margin-right: vwtop(5px);
+}
+.createjs-container {
+  width: vwtop(749px);
+  height: vwtop(749px);
+  iframe {
+    width: 100%;
+    height: 100%;
+  }
+}
+.container {
+  height: 100%;
+  max-width: none;
+  display: flex;
+  justify-content: center;
+}
+.desc-block {
+  font-weight: bolder;
+  color: white;
+  font-size: vwtop(50px);
+  padding-top: vwtop(140px);
+  margin-right: vwtop(-70px);
+}
+
+.form-block {
+  font-size: vwtop(36px);
+  letter-spacing: vwtop(6px);
+  white-space: nowrap;
+  text-align: center;
+  padding: 0;
+  padding-top: vwtop(140px);
+  width: auto;
+  .modal-block & {
+    padding-bottom: 0;
+  }
+  .row {
+    margin-bottom: vwtop(50px);
+    display: flex;
+    align-items: center;
+  }
+  input,
+  .form-select {
+    font-weight: bold;
+  }
+  .btn {
+    font-size: vwtop(36px);
+    &.curve {
+      &:hover {
+        span {
+          color: #f56c6c;
+        }
+      }
+    }
+  }
+}
+.form-radio {
+  input[type='radio'] {
+    &:checked {
+      + .check {
+        &::after {
+          left: vwtop(6px);
+          top: vwtop(6px);
+          width: vwtop(26px);
+          height: vwtop(26px);
+        }
+      }
+    }
+    + .check {
+      margin-right: vwtop(10px);
+      &::before {
+        width: vwtop(34px);
+        height: vwtop(34px);
+        border-width: vwtop(2px);
+      }
+    }
+  }
+}
+
+@media (max-width: #{$pcrwd-breakpoint + 'px'}) {
+  .index-bg {
+    min-height: calc(100vh - #{vw(98px)} - #{vw(88px)} - #{vw(4px)});
+  }
+}
+
+@media (max-width: #{$mblrwd-breakpoint + 'px'}) {
+  .index-bg {
+    min-height: calc(100vh - #{vwm(146px)} - #{vwm(10px)});
+  }
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    > .desc-block {
+      order: 1;
+    }
+    > .trail-calc {
+      order: 2;
+    }
+    > .pic {
+      order: 3;
+    }
+  }
+  .createjs-container {
+    width: vwm(500px);
+    height: vwm(500px);
+  }
+
+  [name="age"] {
+    width: vwm(120px);
+    padding-right: vwm(10px);
+    margin-right: vwm(5px);
+  }
+
+  .desc-block {
+    font-size: vwm(50px);
+    padding-top: 0;
+    margin-right: 0;
+  }
+  .form-block {
+    font-size: vwm(36px);
+    letter-spacing: vwm(6px);
+    padding-top: vwm(20px);
+    .modal-block & {
+      padding-bottom: 0;
+    }
+    .row {
+      margin-bottom: vwm(25px);
+    }
+    input,
+    .btn {
+      font-size: vwm(36px);
+      line-height: 1.5;
+    }
+    .btn {
+      margin: 0 auto;
+      margin-top: vwm(40px);
+    }
+  }
+  .form-radio {
+    input[type='radio'] {
+      &:checked {
+        + .check {
+          &::after {
+            left: vwm(6px);
+            top: vwm(6px);
+            width: vwm(26px);
+            height: vwm(26px);
+          }
+        }
+      }
+      + .check {
+        margin-right: vwm(10px);
+        &::before {
+          width: vwm(34px);
+          height: vwm(34px);
+          border-width: vwm(2px);
+        }
+      }
+    }
+  }
+}

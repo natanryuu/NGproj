@@ -1,0 +1,48 @@
+<div class="index-bg">
+  <div class="container">
+    <div class="desc-block">
+      <div class="desc">輸入您的基本資料</div>
+    </div>
+    <div class="pic">
+      <div class="createjs-container"><iframe src="assets/createjs/star02/index.html"></iframe></div>
+    </div>
+    <div class="trail-calc init-input">
+      <div class="form-block">
+        <div class="row">
+          <span>我是&nbsp;&nbsp;&nbsp;</span>
+          <label class="form-radio">
+            <input type="radio" [(ngModel)]="init_input.gender" [value]="'M'">
+            <span class="check"></span>
+            <span>{{shared.gender['M']}}</span>
+          </label>
+          <label class="form-radio">
+            <input type="radio" [(ngModel)]="init_input.gender" [value]="'F'">
+            <span class="check"></span>
+            <span>{{shared.gender['F']}}</span>
+          </label>
+        </div>
+        <div class="row">
+          <span>今年</span>
+          <input class="inline-style" type="number" pattern="[0-9]*" inputmode="numeric" name="age"
+            [min]="shared.input_age_min_limit" [max]="shared.input_age_max_limit" [(ngModel)]="init_input.age"
+            (change)="shared.fixAge();" (focus)="clearValue($event);" (blur)="recoveryValue($event);">
+          <span>歲</span>
+        </div>
+        <div class="row">
+          <span>月收入新臺幣</span>
+          <div class="form-select inline-style">
+            <select [(ngModel)]="init_input.income">
+              <option *ngFor="let item of income_lists" [value]="item">{{item | number}}</option>
+            </select>
+            <span class="value">{{init_input.income | number}}</span>
+          </div>
+          <span>元</span>
+        </div>
+        <button class="btn curve" (click)="trailCalc();">
+          <span>立即試算</span>
+          <div class="bk"></div>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

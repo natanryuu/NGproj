@@ -1,0 +1,340 @@
+<div class="calc-section" [ngClass]="shared.activePlan">
+  <div class="container">
+    <div class="calc-container">
+      <div class="title-block tab0">
+        <h4 class="result-title"><p>投資計劃建議</p><h6>{{shared.plan_name}}</h6></h4>
+        <h5 class="inline">
+          <p>
+            <b>
+              <i>目標金額 /萬</i><br>
+              <u>${{ shared.target_dollar / 10000}}</u>
+            </b>
+          </p>
+          <p>
+            <b>
+              <i>期初 /萬</i><br>
+              <u>{{ show_initial_dollar }}</u>
+            </b>
+          </p>
+          <p>
+            <b>
+              <i>每月 /萬</i><br>
+              <u>{{ show_RSP }}</u>
+            </b>
+          </p>
+          <p>
+            <b>
+              <i>年期</i><br>
+              <u>{{ show_period }}</u>
+            </b>
+          </p>
+        </h5>
+      </div>
+      <div class="tab-group">
+        <ul>
+          <li (click)="switchChart('title-block');" [ngClass]="{'active': chart_block === 'title-block'}">投資計畫</li>
+          <li (click)="switchChart('pie');" [ngClass]="{'active': chart_block === 'pie'}">投資配置</li>
+          <li (click)="switchChart('area');" [ngClass]="{'active': chart_block === 'area'}">投資模擬</li>
+          <li (click)="switchChart('history');" [ngClass]="{'active': chart_block === 'history'}">歷史模擬</li>
+        </ul>
+      </div>
+      <div class="tab-content-block">
+        <!--
+          #######                                #######                       #     ######               #####
+          #        ####  #    # # ##### #   #    #       #    # #####   ####  ###    #     # # ######    #     # #    #   ##   #####  #####
+          #       #    # #    # #   #    # #     #        #  #  #    # #    #  #     #     # # #         #       #    #  #  #  #    #   #
+          #####   #    # #    # #   #     #      #####     ##   #    # #    #        ######  # #####     #       ###### #    # #    #   #
+          #       #  # # #    # #   #     #      #         ##   #####  #    #  #     #       # #         #       #    # ###### #####    #
+          #       #   #  #    # #   #     #      #        #  #  #      #    # ###    #       # #         #     # #    # #    # #   #    #
+          #######  ### #  ####  #   #     #      ####### #    # #       ####   #     #       # ######     #####  #    # #    # #    #   #
+        -->
+        <div class="tab-content tab1">
+          <div class="tab-container">
+            <div class="tab-title">投資配置</div>
+          </div>
+          <div class="charts">
+            <div class="pie">
+              <highcharts-chart
+                [Highcharts]="Highcharts"
+
+                [constructorType]="chartConstructor_pie"
+                [options]="chartOptions_pie"
+                [callbackFunction]="chartCallback_pie"
+
+                [(update)]="updateFlag_pie"
+                [oneToOne]="oneToOneFlag_pie"
+
+                class="pie-chart"
+              ></highcharts-chart>
+              <div class="chart-wrapper">
+                <!-- <p class="lato">{{ shared.current_year }} 年</p> -->
+                <div class="sbrate">
+                  <div class="stock">
+                    <p>股票型</p>
+                    <p class="digit"><span class="huge lato" [countUp]="shared.return_equity_expo.InitialStockRatio">0</span>%</p>
+                  </div>
+                  <div class="bond">
+                    <p>債券型</p>
+                    <p class="digit"><span class="huge lato" [countUp]="shared.return_equity_expo.InitialBondRatio">0</span>%</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="legend-table">
+              <table>
+                <thead>
+                  <tr>
+                    <th>投資市場</th>
+                    <th>建議比例</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>{{shared.return_equity_expo.InitialStockA}}</td>
+                    <td>
+                      <div class="allocate">
+                        <div class="pct"><span [countUp]="shared.return_equity_expo.InitialStockARatio" [options]="{decimalPlaces: 2}">0</span>%</div>
+                        <!-- <div class="legend-color stock1 thumb">
+                          <div class="bar" [ngStyle]="{width: shared.return_equity_expo.InitialStockARatio + '%'}"></div>
+                        </div> -->
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>{{shared.return_equity_expo.InitialStockB}}</td>
+                    <td>
+                      <div class="allocate">
+                        <div class="pct"><span [countUp]="shared.return_equity_expo.InitialStockBRatio" [options]="{decimalPlaces: 2}">0</span>%</div>
+                        <!-- <div class="legend-color stock2 thumb">
+                          <div class="bar" [ngStyle]="{width: shared.return_equity_expo.InitialStockBRatio + '%'}"></div>
+                        </div> -->
+                      </div>
+                    </td>
+                  </tr>
+                  <tr *ngIf="false">
+                    <td>新興市場股市</td>
+                    <td>
+                      <div class="allocate">
+                        <div class="pct"><span [countUp]="shared.return_equity_expo.InitialStockCRatio" [options]="{decimalPlaces: 2}">0</span>%</div>
+                        <div class="legend-color stock3 thumb">
+                          <div class="bar" [ngStyle]="{width: shared.return_equity_expo.InitialStockCRatio + '%'}"></div>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>{{shared.return_equity_expo.InitialBondL}}</td>
+                    <td>
+                      <div class="allocate">
+                        <div class="pct"><span [countUp]="shared.return_equity_expo.InitialBondLRatio" [options]="{decimalPlaces: 2}">0</span>%</div>
+                        <!-- <div class="legend-color bond1 thumb">
+                          <div class="bar" [ngStyle]="{width: shared.return_equity_expo.InitialBondLRatio + '%'}"></div>
+                        </div> -->
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>{{shared.return_equity_expo.InitialBondM}}</td>
+                    <td>
+                      <div class="allocate">
+                        <div class="pct"><span [countUp]="shared.return_equity_expo.InitialBondMRatio" [options]="{decimalPlaces: 2}">0</span>%</div>
+                        <!-- <div class="legend-color bond2 thumb">
+                          <div class="bar" [ngStyle]="{width: shared.return_equity_expo.InitialBondMRatio + '%'}"></div>
+                        </div> -->
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>{{shared.return_equity_expo.InitialBondS}}</td>
+                    <td>
+                      <div class="allocate">
+                        <div class="pct"><span [countUp]="shared.return_equity_expo.InitialBondSRatio" [options]="{decimalPlaces: 2}">0</span>%</div>
+                        <!-- <div class="legend-color bond3 thumb">
+                          <div class="bar" [ngStyle]="{width: shared.return_equity_expo.InitialBondSRatio + '%'}"></div>
+                        </div> -->
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="tab-container">
+            <hr>
+            <div class="area-legend">
+              <p class="title readme-toggle">投資配置說明<span class="icon icon-ques" (click)="show_readme_info = !show_readme_info;"></span></p>
+              <div class="text-content" *ngIf="show_readme_info">
+                <p>以上試算以客戶投資風險屬性「Level 4-成長型」之配置為例。實際申購將依客戶投資風險屬性提供相應之投資組合供客戶選擇，詳請見<a href="https://bank.sinopac.com/sinopacBT/webevents/ibrain/faq.html#qa1-3" class="pure-link" target="_blank">Q&A</a>。</p>
+              </div>
+            </div>
+          </div>
+          <!-- <p class="see-more text-center">想看 <a class="pure-link" (click)="chart_block = 'area'; $event.preventDefault();">投資模擬</a> 或 <a class="pure-link" (click)="chart_block = 'history'; $event.preventDefault();">歷史模擬</a></p> -->
+        </div>
+        <!--
+          ######                                                            #        #                             #####
+          #     # #####   ####       # ######  ####  ##### #  ####  #    # ###      # #   #####  ######   ##      #     # #    #   ##   #####  #####
+          #     # #    # #    #      # #      #    #   #   # #    # ##   #  #      #   #  #    # #       #  #     #       #    #  #  #  #    #   #
+          ######  #    # #    #      # #####  #        #   # #    # # #  #        #     # #    # #####  #    #    #       ###### #    # #    #   #
+          #       #####  #    #      # #      #        #   # #    # #  # #  #     ####### #####  #      ######    #       #    # ###### #####    #
+          #       #   #  #    # #    # #      #    #   #   # #    # #   ## ###    #     # #   #  #      #    #    #     # #    # #    # #   #    #
+          #       #    #  ####   ####  ######  ####    #   #  ####  #    #  #     #     # #    # ###### #    #     #####  #    # #    # #    #   #
+        -->
+        <div class="tab-content tab2">
+          <div class="tab-container">
+            <div class="tab-title">投資模擬</div>
+            <div class="meta-group">
+              <div class="show-irr">
+                <p><span class="red">{{shared.current_year}}</span> 至 <span class="red">{{irr_year}}</span> 年化報酬率 <span [ngClass]="{'red': irr > 0, 'green' : irr < 0, 'black': irr == 0}">{{irr > 0 ? '+' + irr : '-' + irr }}%</span></p>
+                <p *ngIf="situation === 'better'"><span class="red">20%</span>的機率高於預估之年化報酬率</p>
+                <p *ngIf="situation === 'generally'"><span class="red">50%</span>的機率高於預估之年化報酬率</p>
+                <p *ngIf="situation === 'poor'"><span class="red">80%</span>的機率高於預估之年化報酬率</p>
+              </div>
+              <div class="switch-buttons">
+               <button class="btn blue" [ngClass]="{'active': situation === 'poor', 'normal': situation !== 'poor'}" (click)="changeSituation('poor')">{{situation_name['poor']}}</button>
+                <button class="btn blue" [ngClass]="{'active': situation === 'generally', 'normal': situation !== 'generally'}" (click)="changeSituation('generally')">{{situation_name['generally']}}</button>
+                <button class="btn blue" [ngClass]="{'active': situation === 'better', 'normal': situation !== 'better'}" (click)="changeSituation('better')">{{situation_name['better']}}</button>
+              </div>
+            </div>
+            <div class="charts">
+              <highcharts-chart
+                [Highcharts]="Highcharts"
+
+                [constructorType]="chartConstructor_area"
+                [options]="chartOptions_area"
+                [callbackFunction]="chartCallback_area"
+
+                [(update)]="updateFlag_area"
+                [oneToOne]="oneToOneFlag_area"
+
+                class="area-chart"
+                style="width: 100%; height: 50vh; display: block;"
+              ></highcharts-chart>
+            </div>
+            <hr>
+            <div class="area-legend">
+              <p class="title readme-toggle">投資模擬說明<span class="icon icon-ques" (click)="show_readme = !show_readme;"></span></p>
+              <div class="text-content" *ngIf="show_readme">
+                <ul class="decimal">
+                  <li>投資組合依據投資期間與目標達成率進行績效模擬，並假設資產報酬分配屬常態分配。以投資金額、資產報酬率與波動度(標準差)和資產間相關係數進行蒙地卡羅模擬，推估投資組合的可能價值。<strong class="underline deepred">惟本模擬之結果僅供參考，無法保證準確性，未來實際狀況可能與模擬數值出現落差。黑線表示投資人投入本金走勢，藍線表示投資組合的市值走勢。</strong></li>
+                  <li>投資組合的資產展望有三種模擬情境：分別為較佳表現(投資組合的表現有20%機率優於此數值)、一般表現(投資組合的表現有50%機率優於此數值)和較差表現(投資組合的表現有20%機率劣於此數值)。</li>
+                </ul>
+              </div>
+            </div>
+            <!-- <div class="area-legend">
+              <p class="title">投資市場<span>&nbsp;(<span class="stock">股票型</span>/<span class="bond">債券型</span>)</span></p>
+              <div class="allocations" [ngClass]="{'disabled': last_index}">
+                <div class="stock" [ngClass]="{'less': stock_ratio < 20}" [ngStyle]="{'width': stock_ratio + '%'}">{{ stock_ratio + '%' }}</div>
+                <div class="bond" [ngClass]="{'less': bond_ratio < 20}" [ngStyle]="{'width': bond_ratio + '%'}">{{ bond_ratio + '%' }}</div>
+                <div class="disabled-content">不適用</div>
+                <div [ngClass]="{'less': stock_ratio > 0 && stock_ratio < 20}" class="stock-overflow">{{ stock_ratio + '%' }}</div>
+                <div [ngClass]="{'less': bond_ratio > 0 && bond_ratio < 20}" class="bond-overflow">{{ bond_ratio + '%' }}</div>
+              </div>
+            </div> -->
+          </div>
+        </div>
+        <!--
+          #     #                                                      #        #                             #####
+          #     # #  ####  #####  ####  #####  #  ####    ##   #      ###      # #   #####  ######   ##      #     # #    #   ##   #####  #####
+          #     # # #        #   #    # #    # # #    #  #  #  #       #      #   #  #    # #       #  #     #       #    #  #  #  #    #   #
+          ####### #  ####    #   #    # #    # # #      #    # #             #     # #    # #####  #    #    #       ###### #    # #    #   #
+          #     # #      #   #   #    # #####  # #      ###### #       #     ####### #####  #      ######    #       #    # ###### #####    #
+          #     # # #    #   #   #    # #   #  # #    # #    # #      ###    #     # #   #  #      #    #    #     # #    # #    # #   #    #
+          #     # #  ####    #    ####  #    # #  ####  #    # ######  #     #     # #    # ###### #    #     #####  #    # #    # #    #   #
+        -->
+        <div class="tab-content tab3">
+          <div class="tab-container">
+            <div class="tab-title">歷史模擬</div>
+            <form [formGroup]="ngForm" (ngSubmit)="onSubmitGetBackProj(form)" #form="ngForm" (keydown.enter)="$event.preventDefault();">
+              <div class="meta-group form-block back-history">
+                <div class="grid">
+                  <div class="grid-row">
+                    <div class="row start-year">
+                      <span class="label">起始年份</span>
+                      <input type="number" class="underlineOnly" pattern="[0-9]*" inputmode="numeric" formControlName="formStartYear" [min]="shared.back_proj_history_year_min" [max]="shared.back_proj_history_year_max - 1"  (blur)="onSubmitGetBackProj(form)">
+                      <span>年</span>
+                    </div>
+                    <div class="row history-lists">
+                      <span class="label">或重大事件</span>
+                      <div class="form-select pull-right">
+                        <select formControlName="formHistoryList" (change)="onSubmitGetBackProj(form)">
+                          <option *ngFor="let item of show_history_lists; index as i" [disabled]="item.Years > shared.current_year - shared.period_range - 1" [value]="i">{{item.Years === '0' ? '' : item.Years + ' '}}{{item.EventName}}</option>
+                        </select>
+                        <p class="value underlineOnly">{{show_history_lists[show_history_lists_index].Years === '0' ? '' : show_history_lists[show_history_lists_index].Years + ' '}}{{show_history_lists[show_history_lists_index].EventName}}</p>
+                      </div>
+                    </div>
+                    <div class="row btn-block" style="display: none;">
+                      <button  class="btn queryhistory" type="submit">查詢</button>
+                    </div>
+                  </div>
+                  <div class="grid-row">
+                    <div class="show-irr">
+                      <p><span class="red">{{irr_history_start_year}}</span> 至 <span class="red">{{irr_history_year}}</span> 年化報酬率 <span [ngClass]="{'green': irr_history < 0, 'red': irr_history > 0}">{{irr_history >= 0 ? irr_history == 0 ? irr_history : '+' + irr_history : '-' + (irr_history * -1) }}%</span></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </form>
+
+            <div class="charts">
+              <highcharts-chart
+                [Highcharts]="Highcharts"
+
+                [constructorType]="chartConstructor_history"
+                [options]="chartOptions_history"
+                [callbackFunction]="chartCallback_history"
+
+                [(update)]="updateFlag_history"
+                [oneToOne]="oneToOneFlag_history"
+
+                class="history-chart"
+                style="width: 100%; height: 50vh; display: block;"
+              ></highcharts-chart>
+            </div>
+            <hr>
+            <div class="area-legend">
+              <p class="title readme-toggle">歷史模擬說明<span class="icon icon-ques" (click)="show_readme_history = !show_readme_history"></span></p>
+              <div class="text-content" *ngIf="show_readme_history">
+                <ul class="decimal">
+                  <li>歷史回測之模擬投資工具如下：
+                    <ol class="disc">
+                      <li>股票型資產：西元1929年~1970年S&P 500指數總報酬率；西元1971年以後為S&P 500指數與MSCI World Index指數各半的總報酬率。</li>
+                      <li>債券型資產：3個月美國國庫券與10年美國政府公債各半的總報酬率。</li>
+                    </ol>
+                  </li>
+                  <li><strong class="underline deepred">模擬結果不代表未來績效之保證。</strong></li>
+                  <li>歷史模擬結果，並非以實際投資標的計算，而是以指數年度總報酬資料為基準推算每月報酬，且<strong class="underline deepred">未考量ETF費用、稅務、可能交易滑價、匯率變化、以及實際投資時間差之影響。</strong></li>
+                </ul>
+              </div>
+            </div>
+            <!-- <div class="area-legend">
+              <p class="title">投資市場<span>&nbsp;(<span class="stock">股票型</span>/<span class="bond">債券型</span>)</span></p>
+              <div class="allocations" [ngClass]="{'disabled': last_index_history}">
+                <div class="stock" [ngClass]="{'less': stock_ratio_history < 20}" [ngStyle]="{'width': stock_ratio_history + '%'}">{{ stock_ratio_history + '%' }}</div>
+                <div class="bond" [ngClass]="{'less': bond_ratio_history < 20}" [ngStyle]="{'width': bond_ratio_history + '%'}">{{ bond_ratio_history + '%' }}</div>
+                <div class="disabled-content">不適用</div>
+                <div [ngClass]="{'less': stock_ratio_history > 0 && stock_ratio_history < 20}" class="stock-overflow">{{ stock_ratio_history + '%' }}</div>
+                <div [ngClass]="{'less': bond_ratio_history > 0 && bond_ratio_history < 20}" class="bond-overflow">{{ bond_ratio_history + '%' }}</div>
+              </div>
+            </div> -->
+          </div>
+        </div>
+        <div class="action-btn btn-block inline">
+          <div class="btn-wrapper">
+            <button class="btn normal square" (click)="adjustPlan();">調整計劃</button>
+            <button class="btn normal square" routerLink="/trailcalc">重選目標</button>
+            <a class="btn hidden-min square" (click)="applyNow('pc');" target="_blank">立即申購</a>
+            <a class="btn hidden-max square" (click)="applyNow('mobile');" target="_blank">立即申購</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <a class="right-finger e_pc" [ngClass]="{'active': show_finger}" (click)="applyNow('pc');" target="_blank">
+      <img class="finger-pc" src="assets/images/bt_go_pc.png">
+      <!-- <img class="finger" src="assets/images/bt_go_mob.png"> -->
+  </a>
+  <a class="right-finger e_m" [ngClass]="{'active': show_finger}" (click)="applyNow('mobile');" target="_blank">
+      <img class="finger-m" src="assets/images/bt_go_mob.png">
+  </a>
+  </div>
+</div>

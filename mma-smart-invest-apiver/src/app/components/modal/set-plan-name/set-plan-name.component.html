@@ -1,0 +1,20 @@
+<div class="form-block modal set-plan-name">
+  <div class="title-block">
+    <h3>我想要達成</h3>
+  </div>
+  <div class="grid">
+    <div class="grid-row">
+      <div class="row">
+        <input type="text" placeholder="快為您的目標命名吧!" [maxLength]="10" [(ngModel)]="plan_name" [ngClass]="{'required': is_empty}">
+      </div>
+    </div>
+  </div>
+  <br>
+  <p class="reminds red text-center">*中英數最多10字</p>
+  <p class="reminds red text-center" *ngIf="is_empty">*欄位不得為空</p>
+</div>
+
+<div class="btn-block inline in-modal">
+  <button class="btn normal return" (click)="closeModal();">上一步</button>
+  <button class="btn" (click)="call();">下一步</button>
+</div>

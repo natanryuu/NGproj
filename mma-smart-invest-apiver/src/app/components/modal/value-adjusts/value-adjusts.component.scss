@@ -1,0 +1,80 @@
+@import '_variables';
+
+.form-block {
+  line-height: 1;
+  .grid {
+    .row {
+      span.label {
+        width: 32%;
+      }
+      .form-select {
+        width: 100%;
+      }
+    }
+  }
+  input {
+    width: 100px;
+    margin: 0 20px;
+  }
+}
+
+.input-with-ps {
+  position: relative;
+  &.no-spin {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+  .ps {
+    font-size: 16px;
+    position: absolute;
+    left: -50%;
+    right: -50%;
+    text-align: center;
+    line-height: 2;
+  }
+}
+
+@media (max-width: #{$pcrwd-breakpoint + 'px'}) {
+  .form-block {
+    input {
+      width: vw(100px);
+      margin: 0 vw(20px);
+    }
+  }
+  
+  .input-with-ps {
+    &.no-spin {
+      margin-left: vw(20px);
+      margin-right: vw(20px);
+    }
+    .ps {
+      font-size: vw(16px);
+    }
+  }
+}
+
+@media (max-width: #{$mblrwd-breakpoint + 'px'}) {
+  .form-block {
+    .grid {
+      .row {
+        span.label {
+          width: 25vw;
+        }
+      }
+    }
+    input {
+      width: vwm(150px);
+      margin: 0 vwm(20px);
+    }
+  }
+  
+  .input-with-ps {
+    &.no-spin {
+      margin-left: vwm(20px);
+      margin-right: vwm(20px);
+    }
+    .ps {
+      font-size: vwm(24px);
+    }
+  }
+}

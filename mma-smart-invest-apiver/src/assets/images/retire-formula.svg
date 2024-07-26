@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 339.72 95.13">
+  <defs>
+    <style>
+    .cls-1,
+    .cls-3 {
+      font-size: 12px;
+      font-family: MicrosoftJhengHeiBold, Microsoft JhengHei;
+    }
+    .cls-1,
+    .cls-2 {
+      fill: #fff;
+    }
+    .cls-2 {
+      font-size: 33px;
+      font-family: MinionPro-Regular, Minion Pro;
+    }
+    .cls-4 {
+      fill: none;
+      stroke: #666;
+      stroke-miterlimit: 10;
+    }
+    </style>
+  </defs>
+  <title>retire-formula</title>
+  <g id="圖層_2" data-name="圖層 2">
+    <g id="pop">
+      <text class="cls-1" transform="translate(0 88.74)">註：退休當年年收入=年收入×(1+薪資成長率)</text>
+      <text class="cls-1" transform="translate(246.49 84.75) scale(0.58)">投資期間 </text>
+      <text class="cls-1" transform="translate(0 10.68)">男性/女性餘命</text>
+      <text class="cls-2" transform="translate(29.8 44.06)">
+        ∑
+        <tspan class="cls-3">
+          <tspan x="-0.87" y="19.6">i=0</tspan>
+        </tspan>
+      </text>
+      <text class="cls-1" transform="translate(102.87 22.77)">退休當年年收入</text>
+      <text class="cls-1" transform="translate(186.87 18.77) scale(0.58)">註</text>
+      <text class="cls-1" transform="translate(193.86 22.77)">×所得替代率×(1+通膨率)</text>
+      <text class="cls-1" transform="translate(332.35 18.77) scale(0.58)">i</text>
+      <text class="cls-1" transform="translate(187.33 55.57)">(1+折現率)</text>
+      <text class="cls-1" transform="translate(247.88 51.58) scale(0.58)">i</text>
+      <line class="cls-4" x1="97.42" y1="33.88" x2="339.72" y2="34.63"/>
+    </g>
+  </g>
+</svg>

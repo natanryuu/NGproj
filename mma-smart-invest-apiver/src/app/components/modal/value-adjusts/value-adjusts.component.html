@@ -1,0 +1,89 @@
+<form [formGroup]="ngForm" (ngSubmit)="onSubmit(form)" #form="ngForm">
+  <div class="form-block modal value-adjusts">
+    <div class="title-block">
+      <h3>投資計劃建議</h3>
+      <h5 class="inline center nowrap">
+        <span>{{ shared.plans[shared.activePlan] }}</span>
+        <span>{{ shared.init_input.age }} 歲</span>
+        <span>{{ shared.gender[shared.init_input.gender] }}</span>
+        <span>月收入 {{ shared.init_input.income / 10000 }} 萬</span>
+      </h5>
+    </div>
+    <div class="grid">
+      <div class="grid-row">
+        <div class="row">
+          <span class="label">{{ is_retire ? '預定退休年齡' : '預定投資年期' }}</span>
+          <div class="spin minus" (click)="setOperations('formPeriod', 'minus', min_period);"></div>
+          <div class="input-with-ps">
+            <input type="number" pattern="[0-9]*" inputmode="numeric" formControlName="formPeriod" [min]="min_period" [max]="max_period" >
+            <p class="ps" *ngIf="is_retire">請輸入 <span class="red">{{shared.min_age}}</span> ~ <span class="red">{{shared.max_age}}</span> 歲</p>
+            <p class="ps" *ngIf="!is_retire">請輸入 <span class="red">3</span> 年 ~ <span class="red">30</span> 年</p>
+          </div>
+          <div class="spin plus" (click)="setOperations('formPeriod', 'plus', max_period);"></div>
+          <span>{{ is_retire ? '歲' : '年' }}　</span>
+        </div>
+      </div>
+      <br>
+      <div class="grid-row has-tooltip" >
+        <!-- <span class="expects">預期<span class="red lato fwb">&nbsp;{{ shared.period_range }}&nbsp;</span>年後退休規劃</span> -->
+        <div class="tooltip" [ngClass]="{'show': showToolTip}">
+          <div class="detail" [ngClass]="{'show': (tipNo == 1)}">
+            <p>退休後所需之金額為採用2022年政府資料統計進行運算，退休年齡約為65歲、男性預期生命約為77歲，女性為83歲。<br>另考慮所得替代率、通膨率、折現率等因子計算退休後所需金額。<br>詳細計算公式如下：</p>
+            <div class="formula">
+              <img src="assets/images/retire-formula.svg" alt="">
+            </div>
+          </div>
+
+          <div class="detail"  [ngClass]="{'show': (tipNo == 2)}">
+            <ul class="tipinfo">
+
+
+              <li><p>我可以一次只投入一筆錢；也可以一次投入一筆，搭配每月定時投資；更可以每月定時投資
+                </p></li>
+              <li><p>如不滿意目前投資方式，可透過調整投資期間與目標金額之方式改善。</p></li>
+            </ul>
+          </div>
+          <button (click)="showToolTip = !showToolTip">關閉</button>
+        </div>
+
+
+      </div>
+      <div class="grid-row">
+        <div class="row">
+          <span class="label"><span class="red" *ngIf="is_retire">{{shared.period_range}}</span> {{ is_retire ? '年後退休金額' : '目標金額' }} $<br><sub>TWD</sub></span>
+          <div class="input-with-ps no-spin">
+            <input type="number" pattern="[0-9]*" inputmode="numeric" formControlName="formTargetDollar" [min]="min_target" [max]="max_target">
+            <p class="ps">請輸入 <span class="red">{{min_target | number}}</span> ~ <span class="red">{{max_target | number}}</span> 萬</p>
+          </div>
+          <span style="text-align: left; display: flex; align-items: center;">萬元<span *ngIf="is_retire" class="icon icon-ques" (click)="showTips(1);"></span></span>
+        </div>
+        <div class="range">
+          <mat-slider min="20" max="2000" step="1" formControlName="formTargetDollar" [value]="ngForm.controls['formTargetDollar'].value"
+            (input)="ngForm.controls['formTargetDollar'].setValue($event.value)"></mat-slider>
+        </div>
+      </div>
+      <div class="grid-row">
+        <div class="row row-row">
+          <span class="label">請選擇您的投資方式
+            <!-- <span class="icon icon-ques tips" (click)="showToolTip = !showToolTip"></span> -->
+            <span class="icon icon-ques tips" (click)="showTips(2);"></span>
+          </span>
+
+
+          <div class="form-select">
+            <select formControlName="formIniRSP">
+              <option *ngFor="let item of ini_rsp_dollar; index as i" [value]="i">首次 ${{item['InitialDollar'] | number}}&nbsp;+&nbsp;每月 ${{item['RSPDollar'] | number}}</option>
+            </select>
+            <p class="value">首次 ${{ini_rsp_dollar[ngForm.controls['formIniRSP'].value]['InitialDollar'] | number}}&nbsp;+&nbsp;每月 ${{ini_rsp_dollar[ngForm.controls['formIniRSP'].value]['RSPDollar'] | number}}</p>
+          </div>
+        </div>
+      </div>
+      <p *ngIf="err_msg !== ''" class="red text-center error-msg">＊ {{err_msg}}</p>
+    </div>
+  </div>
+
+  <div class="btn-block inline in-modal">
+    <button class="btn normal return" (click)="closeModal();$event.preventDefault();">上一步</button>
+    <button class="btn" type="submit" [disabled]="ngForm.controls['formIniRSP'].disabled">查看試算結果</button>
+  </div>
+</form>

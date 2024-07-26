@@ -1,0 +1,13 @@
+<div class="modal-backdrop" [ngClass]="operate_class_back" *ngIf="open_modal" (click)="closeModal();"></div>
+<div class="modal-container" [ngClass]="operate_class" *ngIf="open_modal">
+  <div class="modal-block">
+    <div class="modal-close" (click)="closeModal();" *ngIf="show_close_btn"></div>
+    <app-loading *ngIf="componentName === 'loading'"></app-loading>
+    <app-messages *ngIf="componentName === 'messages'"></app-messages>
+    <app-init-input *ngIf="componentName === 'init-input'"></app-init-input>
+    <app-set-plan-name *ngIf="componentName === 'set-plan-name'"></app-set-plan-name>
+    <app-value-adjusts *ngIf="componentName === 'value-adjusts'"></app-value-adjusts>
+    <app-warnings *ngIf="componentName === 'warnings'"></app-warnings>
+    <app-sp-info *ngIf="componentName === 'sp-info'"></app-sp-info>
+  </div>
+</div>

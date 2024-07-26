@@ -1,0 +1,98 @@
+<div [ngClass]="{'open-menu': toggleOpen}" [className]="'wrapper-container ' + shared.current_route">
+  <header *ngIf="!shared.isSinopacApp();">
+    <!-- <button class="toggle-menu hidden-max" [ngClass]="{'open-menu': toggleOpen}"
+      (click)="toggleOpen = !toggleOpen;"></button> -->
+      <div class="header__bar">
+        <div class="nav-toggle hidden-max" (click)="toggleMenu();">
+          <div class="shape has-hover"></div>
+          <div class="button-container">
+            <div class="lines open" [ngClass]="{'isClose': !toggleOpen, 'isOpen': toggleOpen}">
+              <div class="line"></div>
+              <div class="line"></div>
+              <div class="line"></div>
+            </div>
+            <div class="lines close" [ngClass]="{'isClose': !toggleOpen, 'isOpen': toggleOpen}">
+              <div class="line"></div>
+              <div class="line"></div>
+            </div>
+          </div>
+        </div>
+        <div class="logo-block">
+          <a class="logo" href="https://bank.sinopac.com/sinopacBT/webevents/ibrain/index.html#page-1">
+            <img src="assets/images/logo.svg" alt="永豐 ibrAin Logo">
+          </a>
+        </div>
+        <nav class="top-menu" [ngClass]="{'active': toggleOpen}">
+          <object *ngIf="toggleOpen" class="md-bg hidden-max" data="assets/images/menu_open.svg" type="image/svg+xml"></object>
+          <object *ngIf="!toggleOpen" class="md-bg hidden-max" data="assets/images/menu_close.svg" type="image/svg+xml"></object>
+          <ul>
+            <li class="hidden-max">
+              <a [routerLink]="['/']" (click)="toggleOpen = false;">立即體驗 永豐ibrAin</a>
+            </li>
+            <li>
+              <a href="https://bank.sinopac.com/sinopacBT/webevents/ibrain/index.html#page-2">三大特點</a>
+            </li>
+            <li>
+              <a href="https://bank.sinopac.com/sinopacBT/webevents/ibrain/index.html#page-5">收費說明</a>
+            </li>
+            <li>
+              <a href="https://bank.sinopac.com/sinopacBT/webevents/ibrain/blogs.html">投資筆記</a>
+            </li>
+            <li>
+              <a href="https://bank.sinopac.com/sinopacBT/webevents/ibrain/faq.html">Q & A</a>
+            </li>
+            <li>
+              <a (click)="showSPinfos();">專人服務</a>
+            </li>
+            <li>
+              <a href="https://dawho.tw/?_sasdk=fNjAwMDE2NDg4MA">點我開永豐帳戶</a>
+            </li>
+            <!-- <li>
+              <a href="https://bank.sinopac.com/sinopacBT/about/introduction/announcement/legal-disclaimers.html" target="_blank">相關文件下載</a>
+            </li> -->
+            <li>
+              <a class="hidden-min" href="https://mma.sinopac.com/AI/AIQuery/AI_Summary.aspx">登入</a>
+              <a class="hidden-max" href="https://m.sinopac.com/m/ai/aiquery/m_AI_Summary.aspx">登入</a>
+            </li>
+            <li class="social-link">
+              <a href="#" onclick="window.open('http://www.facebook.com/share.php?u='.concat(encodeURIComponent(location.href)),'sharer','toolbar=0,status=0,width=626,height=436' );trackEvent('footer','Facebook','')">
+                <img src="assets/images/bt_fb.png" alt="">
+              </a>
+              <a
+                href="javascript: void(window.open('https://lineit.line.me/share/ui?url=' .concat(encodeURIComponent(location.href)) ));trackEvent('footer','Line','')">
+                <img src="assets/images/bt_line.png" alt="">
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    <div class="c-block kv" [hidden]="!isShow">
+      <div class="close" (click)="hideAdblock();"></div>
+      <h3 class="title">
+
+        <strong>🎉好評優惠再延長🎉<span class="hidden-min">，</span><br class="hidden-max"/>申購 ibrAin 帳管費只要<span class="pink"> 0.5%(年)</span>，<br class="hidden-max"/>優惠在投組到期前每月都適用!</strong>
+
+      </h3>
+
+      <a href="https://bank.sinopac.com/sinopacBT/webevents/ibrain/halfprice2022/?utm_source=ibrain&utm_medium=count&utm_term=nonpaid&utm_content=na&utm_campaign=ibrainhalfprice20221001" class="underline" target="_blank">活動說明</a>
+      <!-- <div class="btn-block"> <a class="btn" href="https://mma.sinopac.com/MMA8/ibrain/#/?utm_source=ibrain&utm_medium=button&utm_term=nonpaid&utm_content=na&utm_campaign=ibrainhalfprice20221001">立即申購!</a></div> -->
+    </div>
+  </header>
+  <main [ngClass]="{'isapp': shared.isSinopacApp()}">
+
+    <router-outlet></router-outlet>
+
+  </main>
+  <footer>
+    <p>
+      <a class="warning-texts deepred font-larger fwb" (click)="showInvestWarnings();"><strong>投資警語</strong></a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a class="warning-texts" href="https://bank.sinopac.com/sinopacBT/about/introduction/announcement/legal-disclaimers.html" target="_blank">相關文件下載</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a class="warning-texts" href="https://bank.sinopac.com/sinopacBT/footer/privacy-statement.html" target="_blank">隱私權保護聲明</a>
+      <br>
+      永豐商業銀行經金融監督管理委員會109年9月10日 金管證投字第1090352215號函核准辦理兼營證券投資顧問業務<br>© 版權所有。永豐銀行<span class="hidden-min">，</span><br class="hidden-max">24 小時客服專線：02-2505-9999 /
+      0203-08989<span class="hidden-min">&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;</span><br class="hidden-max">地址：台北市中山區南京東路三段36號
+      <!-- &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a class="SPservice-texts" (click)="showSPinfos();">專人服務</a> -->
+      <!-- &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a class="warning-texts" (click)="showInvestWarnings();">投資警語</a> -->
+    </p>
+  </footer>
+</div>
+<app-modal></app-modal>
+

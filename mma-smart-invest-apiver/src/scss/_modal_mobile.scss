@@ -1,0 +1,94 @@
+@media (max-width: #{$mblrwd-breakpoint + 'px'}) {  .icon {
+  &.icon-error {
+    width: vwm(50px);
+    height: vwm(50px);
+    margin-right: vwm(15px);
+  }
+  &.icon-loading {
+    width: vwm(50px);
+    height: vwm(50px);
+  }
+  &.icon-ques {
+    width: vwm(35px);
+    height: vwm(35px);
+  }
+}
+  .modal-container {
+    padding: vwm(10px);
+    &.loading {
+      border-radius: vwm(20px);
+    }
+    &.auto-fit {
+      width: 100%;
+      height: auto;
+      .form-block {
+        &.modal {
+          width: 100%;
+        }
+      }
+    }
+  }
+  .modal {
+    width: 100%;
+    .title {
+      font-size: vwm(48px);
+    }
+    .reminds {
+      font-size: vwm(25px);
+    }
+    &.value-adjusts {
+      .expects {
+        margin-top: vwm(80px);
+        margin-bottom: vwm(40px);
+        .icon {
+          margin-left: vwm(10px);
+        }
+      }
+    }
+    .message-block {
+      .text-block {
+        font-size: vwm(40px);
+      }
+    }
+  }
+
+  .modal-block {
+    height: calc(90vh - #{vwm(100px)});
+    max-width: 100%;
+    padding: vwm(40px);
+    padding-top: vwm(60px);
+    border-radius: vwm(40px);
+  }
+
+  .modal-close {
+    width: vwm(50px);
+    height: vwm(50px);
+    right: vwm(10px);
+    top: vwm(10px);
+  }
+
+  .modal-warnings {
+    font-size: vwm(28px);
+    .modal-block {
+      max-width: none;
+      padding: vwm(25px);
+      .modal-close {
+        top: vwm(20px);
+        right: vwm(20px);
+        height: vwm(80px);
+        width: vwm(80px);
+      }
+    }
+
+    h1 {
+      font-size: vwm(54px);
+      margin-bottom: vwm(20px);
+    }
+
+    h2 {
+      font-size: vwm(36px);
+      margin-bottom: vwm(20px);
+    }
+
+  }
+}
